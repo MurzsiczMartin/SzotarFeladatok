@@ -38,7 +38,7 @@ namespace Valasztasok
                 osszes += kepv.szavazat;
             }
             Console.WriteLine("Az összes szavazat: {0}",osszes);
-            Console.WriteLine("Az átlagos szavazatok száma: {0}",(double)osszes/klista.Length);
+            Console.WriteLine("Az átlagos szavazatok száma: {0:F2}",(double)osszes/klista.Length);
 
             //kerületenként induló jelöltek száma
             for (int ker = 1; ker < 9; ker++)
@@ -61,7 +61,22 @@ namespace Valasztasok
                 Console.WriteLine($"A(z) {ker}. kerületben {kepvdb[ker]} indultak");
             }
 
+
+            Console.WriteLine();
             //Otthoni feladat: Melyik kerületben ki nyerte és hány szavazattal a választást?
+            for (int ker = 1; ker < 9; ker++)
+            {
+                Kepviselok nyertes = null;
+                foreach (Kepviselok k in klista)
+                {
+                    if (k.kerulet==ker && (nyertes==null || k.szavazat>nyertes.szavazat) )
+                    {
+                        nyertes = k;
+                    }
+                }
+                Console.WriteLine($"A(z) {ker}. kerületben {nyertes.ToString()} nevű jelölt nyert {nyertes.szavazat} vokssal.");
+            }
+
             
         }
     }
