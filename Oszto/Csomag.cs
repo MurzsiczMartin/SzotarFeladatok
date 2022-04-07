@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace Oszto
 {
     class Csomag
@@ -10,11 +11,13 @@ namespace Oszto
         public static readonly string[] frertekek = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "D", "K", "A" };
 
         public Kartyalap[] lapok;
+        private int ennyivan;
 
 
         public Csomag()
         {
             lapok = new Kartyalap[52];
+            ennyivan = 52;
             int lit = 0;
             for (int i = 0; i < frszinek.Length; i++)
             {
@@ -50,6 +53,19 @@ namespace Oszto
             {
                 Console.WriteLine(item.szin+"-"+item.ertek);
             }
+        }
+
+        public Kartyalap[] huzas(int lapszam)
+        {
+            Kartyalap[] kt = new Kartyalap[lapszam];
+            for (int i = 0; i < lapszam; i++)
+            {
+                kt[i] = lapok[ennyivan - (1 + i)];
+                lapok[ennyivan - (1 + i)] = null;
+            }
+            ennyivan -= lapszam;
+            return kt;
+            
         }
 
 

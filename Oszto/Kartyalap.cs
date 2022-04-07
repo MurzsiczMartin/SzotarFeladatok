@@ -9,6 +9,7 @@ namespace Oszto
         public string szin;
         public string ertek;
 
+
         public Kartyalap()
         {
             szin = "nincs";
